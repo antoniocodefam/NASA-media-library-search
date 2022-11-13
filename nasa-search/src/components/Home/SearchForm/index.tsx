@@ -11,37 +11,44 @@ const currentYear = new Date().getFullYear();
 const { Formik } = formik;
 
 const schema = yup.object().shape({
-  from: yup.number().max(currentYear - 1),
-  until: yup.number().max(currentYear),
+  // from: yup.number().when("until", ([until], schema) => {
+  //   return !!until ? schema.max(+until - 1) : schema.max(currentYear - 1);
+  // }),
+  // until: yup
+  //   .number()
+  //   .max(currentYear)
+  //   .when("from", ([from], schema) => {
+  //     return !!from ? schema.min(+from + 1) : schema.max(currentYear);
+  //   }),
 });
 
-interface IHomeSearchFormInputs {
+export interface IHomeSearchFormInputs {
   search: string;
   from: string;
   until: string;
 }
 
 interface HomeSearchFormProps {
+  initialValues: IHomeSearchFormInputs;
   onSubmit: (values: IHomeSearchFormInputs) => void;
 }
-export default function HomeSearchForm({ onSubmit }: HomeSearchFormProps) {
+export default function HomeSearchForm({
+  initialValues,
+  onSubmit,
+}: HomeSearchFormProps) {
   return (
     <Formik
       validationSchema={schema}
       onSubmit={onSubmit}
-      initialValues={{
-        search: "",
-        from: "",
-        until: "",
-      }}
+      initialValues={initialValues}
     >
       {({
         handleSubmit,
         handleChange,
-        handleBlur,
         values,
         touched,
         isValid,
+        isSubmitting,
         errors,
       }) => (
         <Form noValidate onSubmit={handleSubmit}>
@@ -78,9 +85,8 @@ export default function HomeSearchForm({ onSubmit }: HomeSearchFormProps) {
                 max={currentYear - 1}
               />
               <Form.Control.Feedback type="invalid">
-                Has to be less than
-                {+(+values.until > currentYear ? currentYear : values.until) -
-                  1}
+                Has to be less than{" "}
+                {values.from > values.until ? values.until : currentYear - 1}
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group
@@ -101,12 +107,20 @@ export default function HomeSearchForm({ onSubmit }: HomeSearchFormProps) {
                   isInvalid={!!errors.until}
                 />
                 <Form.Control.Feedback type="invalid">
-                  Has to be less than {currentYear + 1}
+                  {values.from > values.until ? (
+                    <>Has to bigget than {values.from}</>
+                  ) : (
+                    <>Has to be less than {currentYear + 1}</>
+                  )}
                 </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
             <Col md="2" className="pt-2 px-1">
-              <Button type="submit" className="mt-4">
+              <Button
+                type="submit"
+                className="mt-4"
+                disabled={isSubmitting || (touched && !isValid)}
+              >
                 Submit
               </Button>
             </Col>
