@@ -1,4 +1,4 @@
-import { IMediaItem } from "../../api/interfaces/mediaItem";
+import { IMediaItem } from "../../interfaces/mediaItem";
 
 export default function MediaItemTeaser({
   title,

@@ -1,12 +1,8 @@
 import AppRouter from "./components/Router";
-import "antd/dist/antd.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  return (
-    <div id="app">
-      <AppRouter />
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;

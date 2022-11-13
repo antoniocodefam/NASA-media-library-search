@@ -1,20 +1,15 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import HomePage from '../../pages/Home';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "../../pages/Home";
+import AppLayout from "../Layout";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage/>,
-  },
-  {
-    path: "about",
-    element: <div>About</div>,
-  },
-]);
-
-export default function AppRouter(){
-return <RouterProvider router={router} />
+export default function AppRouter() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<HomePage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }

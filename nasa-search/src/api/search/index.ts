@@ -1,6 +1,6 @@
 import apiConfig from "..";
 import { INasaResponse } from "../interfaces";
-import { IMediaItem } from "../interfaces/mediaItem";
+import { IMediaItem } from "../../interfaces/mediaItem";
 
 export interface ISearchResult {
   data: IMediaItem[];
