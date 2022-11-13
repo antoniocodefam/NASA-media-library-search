@@ -18,7 +18,7 @@ export default function MediaItemTeaser({
       <Card style={{ height: "100%" }}>
         <Card.Img style={{ height: 360 }} variant="top" src={thumbnail} />
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
+          <Card.Title data-test-id="title">{title}</Card.Title>
           <Card.Subtitle>
             {photographer && (
               <>
