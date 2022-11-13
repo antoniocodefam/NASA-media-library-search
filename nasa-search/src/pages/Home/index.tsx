@@ -25,7 +25,6 @@ export default function HomePage() {
   );
 
   const handleSubmit = ({ search, from, until }: IHomeSearchFormInputs) => {
-    debugger
     setSearchParams({
       ...(search && { search }),
       ...(until && { until }),
