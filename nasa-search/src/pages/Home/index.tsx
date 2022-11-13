@@ -8,6 +8,9 @@ import Row from "react-bootstrap/Row";
 import HomeTeasers from "../../components/Home/Teasers";
 import { useSearchParams } from "react-router-dom";
 import HomeSearchNoResults from "../../components/Home/Search/NoResults";
+import HomeSearchPagination, {
+  TEASERS_PER_PAGE,
+} from "../../components/Home/Search/Pagination";
 
 function extractFormValuesFromParams(
   searchParams: URLSearchParams
@@ -24,6 +27,7 @@ export default function HomePage() {
   const [mediaItemTeasers, setMediaItemTeasers] = useState<IMediaItemTeaser[]>(
     []
   );
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleSubmit = ({ search, from, until }: IHomeSearchFormInputs) => {
     setSearchParams({
@@ -38,6 +42,10 @@ export default function HomePage() {
     getSearchResult(search, from, until).then((result) => {
       setMediaItemTeasers(result.data);
     });
+
+    const page = searchParams.get("page");
+
+    setCurrentPage(page ? +page - 1 : 0);
   }, [searchParams]);
 
   return (
@@ -50,9 +58,26 @@ export default function HomePage() {
         {mediaItemTeasers.length === 0 ? (
           <HomeSearchNoResults />
         ) : (
-          <HomeTeasers teasers={mediaItemTeasers} />
+          <HomeTeasers
+            teasers={mediaItemTeasers.slice(
+              currentPage,
+              currentPage + TEASERS_PER_PAGE
+            )}
+          />
         )}
       </Row>
+      {mediaItemTeasers.length > TEASERS_PER_PAGE && (
+        <Row>
+          <HomeSearchPagination
+            itemsAmount={mediaItemTeasers.length}
+            currentPage={currentPage + 1}
+            onPageChange={(nextPage) => {
+              console.log('nextPage:', nextPage)
+              setSearchParams({ ...searchParams, page: nextPage.toString() });
+            }}
+          />
+        </Row>
+      )}
     </>
   );
 }
