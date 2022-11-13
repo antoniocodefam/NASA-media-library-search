@@ -2,7 +2,7 @@ import { IMediaItemDetails } from "../../interfaces/mediaItem";
 import Stack from "react-bootstrap/Stack";
 import DetailsContent from "./Content";
 import DetailsKeyword from "./Keywords";
-import BackButton from "../BackButton";
+import BackButton from "../Buttons/Back";
 
 export default function Details({
   title,

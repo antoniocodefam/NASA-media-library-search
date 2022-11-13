@@ -3,10 +3,11 @@ import { IMediaItemTeaser } from "../../interfaces/mediaItem";
 import getSearchResult from "../../api/search";
 import HomeSearchForm, {
   IHomeSearchFormInputs,
-} from "../../components/Home/SearchForm";
+} from "../../components/Home/Search/Form";
 import Row from "react-bootstrap/Row";
 import HomeTeasers from "../../components/Home/Teasers";
 import { useSearchParams } from "react-router-dom";
+import HomeSearchNoResults from "../../components/Home/Search/NoResults";
 
 function extractFormValuesFromParams(
   searchParams: URLSearchParams
@@ -46,7 +47,11 @@ export default function HomePage() {
         initialValues={extractFormValuesFromParams(searchParams)}
       />
       <Row className="mt-5">
-        <HomeTeasers teasers={mediaItemTeasers} />
+        {mediaItemTeasers.length === 0 ? (
+          <HomeSearchNoResults />
+        ) : (
+          <HomeTeasers teasers={mediaItemTeasers} />
+        )}
       </Row>
     </>
   );

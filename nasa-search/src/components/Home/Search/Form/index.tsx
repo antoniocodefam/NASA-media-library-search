@@ -117,7 +117,7 @@ export default function HomeSearchForm({
               <Button
                 type="submit"
                 className="mt-4"
-                disabled={isSubmitting || (touched && !isValid)}
+                disabled={touched && !isValid}
               >
                 Submit
               </Button>
