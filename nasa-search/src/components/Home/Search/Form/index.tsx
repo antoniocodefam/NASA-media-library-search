@@ -5,6 +5,9 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import * as formik from "formik";
 import * as yup from "yup";
+import { CgSearch } from "react-icons/cg";
+import { GrPowerReset } from "react-icons/gr";
+import { useNavigate } from "react-router";
 
 const currentYear = new Date().getFullYear();
 
@@ -39,6 +42,8 @@ export default function HomeSearchForm({
   initialValues,
   onSubmit,
 }: HomeSearchFormProps) {
+  const navigate = useNavigate();
+
   return (
     <Formik
       validationSchema={schema}
@@ -48,10 +53,10 @@ export default function HomeSearchForm({
       {({
         handleSubmit,
         handleChange,
+        resetForm,
         values,
         touched,
         isValid,
-        isSubmitting,
         errors,
       }) => (
         <Form noValidate onSubmit={handleSubmit}>
@@ -114,13 +119,27 @@ export default function HomeSearchForm({
               </InputGroup>
             </Form.Group>
             <Col md="2" className="pt-2 px-1">
-              <Button
-                type="submit"
-                className="mt-4"
-                disabled={touched && !isValid}
-              >
-                Submit
-              </Button>
+              <div className="mt-4 d-flex gap-2">
+                <Button
+                  type="submit"
+                  disabled={touched && !isValid}
+                  title="Submit"
+                >
+                  <CgSearch />
+                </Button>
+                <Button
+                  type="reset"
+                  variant="outline-secondary"
+                  title="Reset"
+                  disabled={touched && !isValid}
+                  onClick={() => {
+                    resetForm();
+                    navigate("/");
+                  }}
+                >
+                  <GrPowerReset />
+                </Button>
+              </div>
             </Col>
           </Row>
         </Form>
