@@ -15,15 +15,23 @@ export default function MediaItemTeaser({
       to={`/details/${id}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
-      <Card>
+      <Card style={{ height: "100%" }}>
         <Card.Img style={{ height: 360 }} variant="top" src={thumbnail} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Subtitle>
-            <MdPerson title="Photographer" /> {photographer}
+            {photographer && (
+              <>
+                <MdPerson title="Photographer" /> {photographer}
+              </>
+            )}
           </Card.Subtitle>
           <Card.Text className="py-3">
-            <MdLocationPin title="Location" size={20} /> {location}
+            {location && (
+              <>
+                <MdLocationPin title="Location" size={20} /> {location}
+              </>
+            )}
           </Card.Text>
         </Card.Body>
         <Card.Body>

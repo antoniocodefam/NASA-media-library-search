@@ -4,24 +4,10 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import * as formik from "formik";
-import * as yup from "yup";
 
 const currentYear = new Date().getFullYear();
 
 const { Formik } = formik;
-
-const schema = yup.object().shape({
-  // from: yup.number().when("until", ([until], schema) => {
-  //   return !!until ? schema.max(+until - 1) : schema.max(currentYear - 1);
-  // }),
-  // until: yup
-  //   .number()
-  //   .max(currentYear)
-  //   .when("from", ([from], schema) => {
-  //     return !!from ? schema.min(+from + 1) : schema.max(currentYear);
-  //   }),
-});
-
 export interface IHomeSearchFormInputs {
   search: string;
   from: string;
@@ -37,11 +23,7 @@ export default function HomeSearchForm({
   onSubmit,
 }: HomeSearchFormProps) {
   return (
-    <Formik
-      validationSchema={schema}
-      onSubmit={onSubmit}
-      initialValues={initialValues}
-    >
+    <Formik onSubmit={onSubmit} initialValues={initialValues}>
       {({
         handleSubmit,
         handleChange,
@@ -49,9 +31,10 @@ export default function HomeSearchForm({
         touched,
         isValid,
         isSubmitting,
-        errors,
       }) => (
-        <Form noValidate onSubmit={handleSubmit}>
+        <Form
+        onSubmit={handleSubmit}
+        >
           <Row className="justify-content-md-center">
             <Form.Group
               as={Col}
@@ -81,13 +64,8 @@ export default function HomeSearchForm({
                 placeholder={(currentYear - 10).toString()}
                 value={values.from}
                 onChange={handleChange}
-                isInvalid={!!errors.from}
-                max={currentYear - 1}
+                max={values.until ? +values.until - 1 : currentYear - 1}
               />
-              <Form.Control.Feedback type="invalid">
-                Has to be less than{" "}
-                {values.from > values.until ? values.until : currentYear - 1}
-              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group
               as={Col}
@@ -104,15 +82,7 @@ export default function HomeSearchForm({
                   value={values.until}
                   onChange={handleChange}
                   max={currentYear}
-                  isInvalid={!!errors.until}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {values.from > values.until ? (
-                    <>Has to bigget than {values.from}</>
-                  ) : (
-                    <>Has to be less than {currentYear + 1}</>
-                  )}
-                </Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
             <Col md="2" className="pt-2 px-1">

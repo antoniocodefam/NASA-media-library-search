@@ -1,8 +1,8 @@
 export interface IMediaItemTeaser {
   id: string;
   title: string;
-  location: string;
-  photographer: string
+  location?: string;
+  photographer?: string
   thumbnail: string
 }
 
