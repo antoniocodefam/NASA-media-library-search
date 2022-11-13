@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IMediaItem } from "../../interfaces/mediaItem";
+import { IMediaItemTeaser } from "../../interfaces/mediaItem";
 import getSearchResult from "../../api/search";
 import HomeSearchForm from "../../components/Home/SearchForm";
 import MediaItemTeaser from "../../components/MediaItemTeaser";
@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 export default function HomePage() {
-  const [mediaItemTeasers, setMediaItemTeasers] = useState<IMediaItem[]>([]);
+  const [mediaItemTeasers, setMediaItemTeasers] = useState<IMediaItemTeaser[]>([]);
 
   return (
     <>

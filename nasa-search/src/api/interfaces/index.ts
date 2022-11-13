@@ -9,6 +9,8 @@ export interface INasaResponse {
             title: string;
             location: string;
             photographer: string;
+            description:string;
+            keywords: string[];
           }
         ];
         links: [{ href: string }];

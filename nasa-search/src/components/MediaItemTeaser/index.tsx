@@ -1,4 +1,4 @@
-import { IMediaItem } from "../../interfaces/mediaItem";
+import { IMediaItemTeaser } from "../../interfaces/mediaItem";
 import Card from "react-bootstrap/Card";
 import { MdLocationPin, MdPerson } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ export default function MediaItemTeaser({
   location,
   photographer,
   thumbnail,
-}: IMediaItem) {
+}: IMediaItemTeaser) {
   return (
     <Link
       to={`/details/${id}`}
