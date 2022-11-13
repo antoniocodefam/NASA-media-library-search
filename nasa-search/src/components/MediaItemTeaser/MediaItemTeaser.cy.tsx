@@ -20,11 +20,10 @@ describe("<MediaItemTeaser />", () => {
   });
 
   it("Renders title", () => {
-    cy.get("[data-test-id='title'").should("be.visible");
+    cy.getByTestId("title").should("be.visible");
   });
+  
   it("Renders correct title", () => {
-    cy.get("[data-test-id='title'")
-      .invoke("text")
-      .should("equal", props.title);
+    cy.getByTestId("title").invoke("text").should("equal", props.title);
   });
 });

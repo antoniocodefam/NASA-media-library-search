@@ -37,3 +37,13 @@ Cypress.Commands.add("mount", mount);
 
 // Example use:
 // cy.mount(<MyComponent />)
+
+Cypress.Commands.add("getByData", (selector) => {
+  return cy.get(`[data-test=${selector}]`);
+});
+Cypress.Commands.add("getByTestId", (selector) => {
+  return cy.get(`[data-test-id=${selector}]`);
+});
+Cypress.Commands.add("getByName", (selector) => {
+  return cy.get(`[name=${selector}]`);
+});

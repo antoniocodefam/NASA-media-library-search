@@ -35,3 +35,10 @@
 //     }
 //   }
 // }
+declare namespace Cypress {
+  interface Chainable {
+    getByData(selector: string): Chainable<JQuery<HTMLElement>>;
+    getByTestId(selector: string): Chainable<JQuery<HTMLElement>>;
+    getByName(selector: string): Chainable<JQuery<HTMLElement>>;
+  }
+}

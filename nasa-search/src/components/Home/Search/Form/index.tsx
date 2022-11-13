@@ -34,7 +34,7 @@ export interface IHomeSearchFormInputs {
   until: string;
 }
 
-interface HomeSearchFormProps {
+export interface HomeSearchFormProps {
   initialValues: IHomeSearchFormInputs;
   onSubmit: (values: IHomeSearchFormInputs) => void;
 }
@@ -124,6 +124,7 @@ export default function HomeSearchForm({
                   type="submit"
                   disabled={touched && !isValid}
                   title="Submit"
+                  data-test-id="submit"
                 >
                   <CgSearch />
                 </Button>
@@ -136,6 +137,7 @@ export default function HomeSearchForm({
                     resetForm();
                     navigate("/");
                   }}
+                  data-test-id="reset"
                 >
                   <GrPowerReset />
                 </Button>
