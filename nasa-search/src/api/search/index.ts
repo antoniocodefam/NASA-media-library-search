@@ -7,8 +7,19 @@ export interface ISearchResult {
   error: boolean;
 }
 
-export default async function getSearchResult(q: string) {
-  return await fetch(`${apiConfig.root}/search?q=${q}&media_type=image`)
+export default async function getSearchResult(
+  q: string,
+  year_start: string,
+  year_end: string
+) {
+  const searchParams = new URLSearchParams({
+    q,
+    ...(year_start && { year_start }),
+    ...(year_end && { year_end }),
+    media_type: "image",
+  });
+
+  return await fetch(`${apiConfig.root}/search?${searchParams}`)
     .then((res) => res.json())
     .then(
       ({ collection: { items } }: INasaResponse) => ({

@@ -6,9 +6,9 @@ export default function AppHeader() {
   return (
     <header>
       <Navbar bg="light" expand="lg">
-        <Container>
+        <Container className='py-3'>
           <Navbar.Brand as={Link} to="/">
-            NASAS Media
+            NASA Media
           </Navbar.Brand>
         </Container>
       </Navbar>

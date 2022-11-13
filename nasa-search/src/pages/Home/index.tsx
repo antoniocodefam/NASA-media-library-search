@@ -10,8 +10,8 @@ export default function HomePage() {
   return (
     <>
       <HomeSearchForm
-        onSubmit={(search) => {
-          getSearchResult(search).then((result) => {
+        onSubmit={({ search, from, until }) => {
+          getSearchResult(search, from, until).then((result) => {
             setMediaItemTeasers(result.data);
           });
         }}
