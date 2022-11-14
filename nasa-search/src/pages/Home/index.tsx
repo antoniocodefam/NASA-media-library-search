@@ -10,7 +10,7 @@ import { useSearchParams } from "react-router-dom";
 import HomeSearchNoResults from "../../components/Home/Search/NoResults";
 import HomeSearchPagination, {
   TEASERS_PER_PAGE,
-} from "../../components/Home/Search/Pagination";
+} from "../../components/Pagination";
 
 function extractFormValuesFromParams(
   searchParams: URLSearchParams

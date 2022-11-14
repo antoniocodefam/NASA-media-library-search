@@ -2,7 +2,7 @@ import Pagination from "react-bootstrap/Pagination";
 
 export const TEASERS_PER_PAGE = 6;
 
-interface HomeSearchPaginationProps {
+export interface HomeSearchPaginationProps {
   itemsAmount: number;
   currentPage: number;
   onPageChange: (nextPage: number) => void;
@@ -23,17 +23,25 @@ export default function HomeSearchPagination({
         />
       )}
       {currentPage > 1 && (
-        <Pagination.Item onClick={() => onPageChange(currentPage - 1)}>
+        <Pagination.Item
+          onClick={() => onPageChange(currentPage - 1)}
+          data-test-id="previous"
+        >
           {currentPage - 1}
         </Pagination.Item>
       )}
-      <Pagination.Item active>{currentPage}</Pagination.Item>
+      <Pagination.Item active data-test-id="current">
+        {currentPage}
+      </Pagination.Item>
       {currentPage < totalPages - 2 && (
-        <Pagination.Item onClick={() => onPageChange(currentPage + 1)}>
+        <Pagination.Item
+          onClick={() => onPageChange(currentPage + 1)}
+          data-test-id="next"
+        >
           {currentPage + 1}
         </Pagination.Item>
       )}
-      {totalPages > 6 && (
+      {totalPages > currentPage && (
         <Pagination.Last
           data-test-id="last"
           onClick={() => onPageChange(totalPages)}
