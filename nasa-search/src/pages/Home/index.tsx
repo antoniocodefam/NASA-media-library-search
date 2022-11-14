@@ -11,6 +11,7 @@ import HomeSearchNoResults from "../../components/Home/Search/NoResults";
 import HomeSearchPagination, {
   TEASERS_PER_PAGE,
 } from "../../components/Pagination";
+import HomeSearchLanding from "../../components/Home/Search/Landing";
 
 function extractFormValuesFromParams(
   searchParams: URLSearchParams
@@ -56,7 +57,11 @@ export default function HomePage() {
       />
       <Row className="mt-5">
         {mediaItemTeasers.length === 0 ? (
-          <HomeSearchNoResults />
+          searchParams.toString() ? (
+            <HomeSearchNoResults />
+          ) : (
+            <HomeSearchLanding />
+          )
         ) : (
           <HomeTeasers
             teasers={mediaItemTeasers.slice(
@@ -72,7 +77,7 @@ export default function HomePage() {
             itemsAmount={mediaItemTeasers.length}
             currentPage={currentPage + 1}
             onPageChange={(nextPage) => {
-              console.log('nextPage:', nextPage)
+              console.log("nextPage:", nextPage);
               setSearchParams({ ...searchParams, page: nextPage.toString() });
             }}
           />
