@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import { useSearchParams } from "react-router-dom";
-import HomeSearchLanding from '@c/Home/Search/Landing';
-import HomeSearchForm, { IHomeSearchFormInputs } from '@c/Home/Search/Form';
-import { IMediaItemTeaser } from '@i/mediaItem';
-import getSearchResult from '@a/search';
-import HomeSearchNoResults from '@c/Home/Search/NoResults';
-import HomeSearchPagination, { TEASERS_PER_PAGE } from '@c/Pagination';
-import HomeTeasers from '@c/Home/Teasers';
+import HomeSearchLanding from "@c/Home/Search/Landing";
+import HomeSearchForm, { IHomeSearchFormInputs } from "@c/Home/Search/Form";
+import { IMediaItemTeaser } from "@i/mediaItem";
+import getSearchResult from "@a/search";
+import HomeSearchNoResults from "@c/Home/Search/NoResults";
+import HomeSearchPagination, { TEASERS_PER_PAGE } from "@c/Pagination";
+import HomeTeasers from "@c/Home/Teasers";
+import HomeSearchError from "@c/Home/Search/Error";
 
 function extractFormValuesFromParams(
   searchParams: URLSearchParams
@@ -25,6 +26,7 @@ export default function HomePage() {
     []
   );
   const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState(false);
 
   const handleSubmit = ({ search, from, until }: IHomeSearchFormInputs) => {
     setSearchParams({
@@ -38,6 +40,7 @@ export default function HomePage() {
     const { search, from, until } = extractFormValuesFromParams(searchParams);
     getSearchResult(search, from, until).then((result) => {
       setMediaItemTeasers(result.data);
+      setError(result.error);
     });
 
     const page = searchParams.get("page");
@@ -52,7 +55,9 @@ export default function HomePage() {
         initialValues={extractFormValuesFromParams(searchParams)}
       />
       <Row className="mt-5">
-        {mediaItemTeasers.length === 0 ? (
+        {error ? (
+          <HomeSearchError />
+        ) :( mediaItemTeasers.length === 0 ? (
           searchParams.toString() ? (
             <HomeSearchNoResults />
           ) : (
@@ -65,7 +70,7 @@ export default function HomePage() {
               currentPage + TEASERS_PER_PAGE
             )}
           />
-        )}
+        ))}
       </Row>
       {mediaItemTeasers.length > TEASERS_PER_PAGE && (
         <Row>
