@@ -1,4 +1,4 @@
-import AppRouter from "./components/Router";
+import AppRouter from '@c/Router';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

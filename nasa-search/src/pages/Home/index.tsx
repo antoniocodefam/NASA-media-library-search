@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
-import { IMediaItemTeaser } from "../../interfaces/mediaItem";
-import getSearchResult from "../../api/search";
-import HomeSearchForm, {
-  IHomeSearchFormInputs,
-} from "../../components/Home/Search/Form";
 import Row from "react-bootstrap/Row";
-import HomeTeasers from "../../components/Home/Teasers";
 import { useSearchParams } from "react-router-dom";
-import HomeSearchNoResults from "../../components/Home/Search/NoResults";
-import HomeSearchPagination, {
-  TEASERS_PER_PAGE,
-} from "../../components/Pagination";
-import HomeSearchLanding from "../../components/Home/Search/Landing";
+import HomeSearchLanding from '@c/Home/Search/Landing';
+import HomeSearchForm, { IHomeSearchFormInputs } from '@c/Home/Search/Form';
+import { IMediaItemTeaser } from '@i/mediaItem';
+import getSearchResult from '@a/search';
+import HomeSearchNoResults from '@c/Home/Search/NoResults';
+import HomeSearchPagination, { TEASERS_PER_PAGE } from '@c/Pagination';
+import HomeTeasers from '@c/Home/Teasers';
 
 function extractFormValuesFromParams(
   searchParams: URLSearchParams
@@ -77,7 +73,6 @@ export default function HomePage() {
             itemsAmount={mediaItemTeasers.length}
             currentPage={currentPage + 1}
             onPageChange={(nextPage) => {
-              console.log("nextPage:", nextPage);
               setSearchParams({ ...searchParams, page: nextPage.toString() });
             }}
           />

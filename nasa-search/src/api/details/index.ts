@@ -1,6 +1,6 @@
-import apiConfig from "..";
-import { INasaResponse } from "../interfaces";
-import { IMediaItemDetails } from "../../interfaces/mediaItem";
+import apiConfig from '@a/index';
+import { INasaResponse } from '@a/interfaces';
+import { IMediaItemDetails } from '@i/mediaItem';
 
 export default async function getDetailsResult(nasa_id: string) {
   return await fetch(`${apiConfig.root}/search?nasa_id=${nasa_id}`)

@@ -2,7 +2,7 @@ import { IMediaItemDetails } from "../../../interfaces/mediaItem";
 import Row from "react-bootstrap/Row";
 import Image from "react-bootstrap/Image";
 import { format } from "date-fns";
-import localeConfig from "../../../config/locale";
+import localeConfig from '@cfg/locale';
 
 export default function DetailsContent({
   title,

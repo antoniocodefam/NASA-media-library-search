@@ -1,6 +1,6 @@
-import apiConfig from "..";
-import { INasaResponse } from "../interfaces";
-import { IMediaItemTeaser } from "../../interfaces/mediaItem";
+import apiConfig from '@a/index';
+import { INasaResponse } from '@a/interfaces';
+import { IMediaItemTeaser } from '@i/mediaItem';
 
 export default async function getSearchResult(
   q: string,

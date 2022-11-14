@@ -1,9 +1,9 @@
 import Container from "react-bootstrap/Container";
 import { useParams } from "react-router-dom";
-import getDetailsResult from "../../api/details";
 import { useEffect, useState } from "react";
-import Details from "../../components/Details";
-import { IMediaItemDetails } from "../../interfaces/mediaItem";
+import { IMediaItemDetails } from '@i/mediaItem';
+import getDetailsResult from '@a/details';
+import Details from '@c/Details';
 
 export default function DetailsPage() {
   const [details, setDetails] = useState<IMediaItemDetails>();

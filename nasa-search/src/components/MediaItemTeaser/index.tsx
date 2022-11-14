@@ -1,4 +1,4 @@
-import { IMediaItemTeaser } from "../../interfaces/mediaItem";
+import { IMediaItemTeaser } from '@i/mediaItem';
 import Card from "react-bootstrap/Card";
 import { MdLocationPin, MdPerson } from "react-icons/md";
 import { Link } from "react-router-dom";

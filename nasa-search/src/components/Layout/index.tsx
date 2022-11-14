@@ -1,6 +1,6 @@
+import AppHeader from '@c/Header';
 import Container from "react-bootstrap/Container";
 import { Outlet } from "react-router-dom";
-import AppHeader from "../Header";
 
 export default function AppLayout() {
   return (

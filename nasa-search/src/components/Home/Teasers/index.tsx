@@ -1,6 +1,6 @@
-import { IMediaItemTeaser } from "../../../interfaces/mediaItem";
+import MediaItemTeaser from '@c/MediaItemTeaser';
+import { IMediaItemTeaser } from '@i/mediaItem';
 import Col from "react-bootstrap/Col";
-import MediaItemTeaser from '../../MediaItemTeaser';
 
 interface HomeTeasersProps {
   teasers: IMediaItemTeaser[];

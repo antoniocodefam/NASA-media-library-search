@@ -1,7 +1,7 @@
+import AppLayout from '@c/Layout';
+import DetailsPage from '@p/Details';
+import HomePage from '@p/Home';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DetailsPage from "../../pages/Details";
-import HomePage from "../../pages/Home";
-import AppLayout from "../Layout";
 
 export default function AppRouter() {
   return (

@@ -1,7 +1,7 @@
-import { IMediaItemDetails } from "../../../interfaces/mediaItem";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Badge from "react-bootstrap/Badge";
+import { IMediaItemDetails } from '@i/mediaItem';
 
 export default function DetailsKeyword({
   keywords,
